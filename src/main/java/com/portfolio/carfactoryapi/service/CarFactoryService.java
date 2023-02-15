@@ -1,5 +1,6 @@
 package com.portfolio.carfactoryapi.service;
 
+import com.portfolio.carfactoryapi.exception.CarNotFoudException;
 import com.portfolio.carfactoryapi.model.Car;
 import com.portfolio.carfactoryapi.model.Engine;
 import com.portfolio.carfactoryapi.model.Equipment;
@@ -43,7 +44,7 @@ public class CarFactoryService {
     }
 
     public Car findById(Long id) {
-        return carFactoryRepository.findById(id).orElseThrow(RuntimeException::new);
+        return carFactoryRepository.findById(id).orElseThrow(() -> new CarNotFoudException(id));
     }
 
     public void addEquipment(Car car, Equipment equipment) {
