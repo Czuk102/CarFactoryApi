@@ -102,7 +102,7 @@ public class CarFactoryService {
 
     public Void deleteById(Long id) {
         if(!carFactoryRepository.existsById(id)){
-           throw new RuntimeException("no such object with id: " + id);
+           throw new CarNotFoudException(id);
         }
         carFactoryRepository.deleteById(id);
         return null;
