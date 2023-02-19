@@ -45,4 +45,13 @@ public class Equipment {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", car=" + car +
+                '}';
+    }
 }
