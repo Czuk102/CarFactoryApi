@@ -13,10 +13,12 @@ public class Car {
     private Long id;
     private String name;
     private Double engineCapacity;
+    @Enumerated(EnumType.STRING)
     private Engine engine;
 
     @OneToMany()
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @JoinColumn(name = "car_id")
+    @Cascade({org.hibernate.annotations.CascadeType.ALL})
     private List<Equipment> equipments;
     private Double price;
 

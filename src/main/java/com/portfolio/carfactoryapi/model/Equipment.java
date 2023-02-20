@@ -1,5 +1,6 @@
 package com.portfolio.carfactoryapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,8 +10,7 @@ public class Equipment {
     private Long id;
     private String name;
     private Double price;
-    @ManyToOne()
-    private Car car;
+
 
     public Equipment() {
     }
@@ -51,7 +51,6 @@ public class Equipment {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", car=" + car +
                 '}';
     }
 }
