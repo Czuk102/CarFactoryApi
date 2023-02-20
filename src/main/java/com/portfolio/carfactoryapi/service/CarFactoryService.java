@@ -47,12 +47,14 @@ public class CarFactoryService {
         return carFactoryRepository.findById(id).orElseThrow(() -> new CarNotFoudException(id));
     }
 
-    public void addEquipment(Car car, Equipment equipment) {
+    public Car addEquipmentById(Long id, Equipment equipment) {
+        Car car = findById(id);
         if (car.getEquipments() != null) {
             car.getEquipments().add(equipment);
         } else {
             car.setEquipments(Collections.singletonList(equipment));
         }
+        return carFactoryRepository.save(car);
     }
 
     public void setName(Car car, String name) {
@@ -64,9 +66,9 @@ public class CarFactoryService {
     public Double getEquipmentPrice(Car car) {
         List<Equipment> equipments = car.getEquipments();
         if (equipments != null) {
-            Double price = null;
+            Double price = 0d;
             if (equipments.size() == 0) {
-                price = 0d;
+                return price;
             } else {
                 for (Equipment equipment : equipments) {
                     price += equipment.getPrice();

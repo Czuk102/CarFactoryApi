@@ -1,6 +1,7 @@
 package com.portfolio.carfactoryapi.controler;
 
 import com.portfolio.carfactoryapi.model.Car;
+import com.portfolio.carfactoryapi.model.Equipment;
 import com.portfolio.carfactoryapi.service.CarFactoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -60,5 +61,8 @@ public class CarFactoryControler {
         return ResponseEntity.ok(carFactoryService.getFinalPrice(carFactoryService.findById(id)));
     }
 
-
+    @PatchMapping ("/cars/{id}/equipments/add")
+    public ResponseEntity<Car> addEquipment(@PathVariable Long id, @RequestBody Equipment equipment){
+        return ResponseEntity.ok(carFactoryService.addEquipmentById(id,equipment));
+    }
 }
