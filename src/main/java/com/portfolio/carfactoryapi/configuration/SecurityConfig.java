@@ -32,6 +32,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    private static final String[] AUTH_WHITELIST = {
+            "/swagger-ui.html",
+            "/v3/api-docs**",
+            "/swagger-ui/**"
+    };
     private final RsaKeyProperties rsaKeyProperties;
 
     public SecurityConfig(RsaKeyProperties rsaKeyProperties) {
@@ -61,7 +67,8 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().disable()
                 .authorizeHttpRequests((auth) ->
-                        auth.anyRequest().authenticated()
+                        auth.requestMatchers(AUTH_WHITELIST).permitAll()
+                                .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
