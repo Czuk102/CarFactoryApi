@@ -1,12 +1,12 @@
 --liquibase formatted sql
 -- changeset czuk102:2
-CREATE TABLE EQUIPMENT
+create table equipment
 (
-    ID     BIGINT AUTO_INCREMENT PRIMARY KEY,
-    NAME   VARCHAR(255) NULL,
-    PRICE  DOUBLE       NULL,
-    CAR_ID BIGINT       NULL,
-    CONSTRAINT
-        FOREIGN KEY (CAR_ID) REFERENCES CARS.CAR (ID)
+    id     bigint auto_increment primary key,
+    name   varchar(255) null,
+    price  double       null,
+    car_id bigint       null,
+    constraint
+        foreign key (car_id) references cars.car (id)
 );
 
