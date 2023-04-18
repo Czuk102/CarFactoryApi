@@ -1,0 +1,26 @@
+version: "3.0"
+services:
+  mysqldb:
+    image: mysql
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: cars
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      spring_net:
+  springboot-app:
+    depends_on:
+      - mysqldb
+    restart: on-failure
+    container_name: spring-app
+    build: .
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_DATABASE: cars
+    ports:
+      - 8081:8080
+    networks:
+      spring_net:
+networks:
+  spring_net:
