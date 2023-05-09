@@ -34,9 +34,9 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
     private static final String[] AUTH_WHITELIST = {
-            "/swagger-ui.html",
-            "/v3/api-docs**",
-            "/swagger-ui/**"
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui/index.html/**"
     };
     private final RsaKeyProperties rsaKeyProperties;
 
