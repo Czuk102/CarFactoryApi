@@ -23,7 +23,7 @@ public class CarFactoryService {
         Equipment ac = new Equipment(null, "ac", 1000.);
         Equipment radio = new Equipment(null, "radio", 800.);
         List<Equipment> equipments = new ArrayList<>(List.of(ac, radio));
-        Car car = new Car(null, "Polonez", 1.6, Engine.PETROL, equipments, 50000.);
+        Car car = new Car(null, "Polonez", 1.6, Engine.PETROL, equipments, 50000., 2000);
         carFactoryRepository.save(car);
         return car;
     }

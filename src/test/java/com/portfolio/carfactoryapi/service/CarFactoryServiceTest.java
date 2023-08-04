@@ -35,7 +35,7 @@ class CarFactoryServiceTest {
         final var heatedSeats = new Equipment(null, "heated front seats", 6000d);
         final var radio = new Equipment(null, "radio", 3000d);
         final var equipments = new ArrayList<>(Arrays.asList(heatedSeats, radio));
-        carToSave = new Car("A8", 2.0, Engine.PETROL, equipments, 100_000d);
+        carToSave = new Car("A8", 2.0, Engine.PETROL, equipments, 100_000d, 2000);
     }
 
     @Test
@@ -70,7 +70,7 @@ class CarFactoryServiceTest {
         Equipment ac = new Equipment(null, "ac", 1000.);
         Equipment radio = new Equipment(null, "radio", 800.);
         List<Equipment> equipments = new ArrayList<>(List.of(ac, radio));
-        Car polonezToSave = new Car(null, "Polonez", 1.6, Engine.PETROL, equipments, 50000.);
+        Car polonezToSave = new Car(null, "Polonez", 1.6, Engine.PETROL, equipments, 50000., 2000);
         when(carFactoryRepository.save(any(Car.class))).thenReturn(polonezToSave);
 
         // act
@@ -101,7 +101,7 @@ class CarFactoryServiceTest {
     void shoudUpdateExistingCarAndReturnNew() {
         // arrange
         when(carFactoryRepository.findById(any())).thenReturn(Optional.ofNullable(carToSave));
-        Car updatedCar = new Car("mx-8", 3.0, Engine.PETROL, null, 300_000d);
+        Car updatedCar = new Car("mx-8", 3.0, Engine.PETROL, null, 300_000d, 2000);
 
         // act
         Car returnedCar = carFactoryService.updateCar(1L, updatedCar);

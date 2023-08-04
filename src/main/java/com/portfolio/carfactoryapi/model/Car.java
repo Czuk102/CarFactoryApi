@@ -21,25 +21,27 @@ public class Car {
     @Cascade({org.hibernate.annotations.CascadeType.ALL})
     private List<Equipment> equipments;
     private Double price;
-
+    private Integer production_year;
     public Car() {
     }
 
-    public Car(Long id, String name, double engineCapacity, Engine engine, List<Equipment> equipments, Double price) {
+    public Car(Long id, String name, double engineCapacity, Engine engine, List<Equipment> equipments, Double price, Integer productionYear) {
         this.id = id;
         this.name = name;
         this.engineCapacity = engineCapacity;
         this.engine = engine;
         this.equipments = equipments;
         this.price = price;
+        this.production_year = productionYear;
     }
 
-    public Car(String name, Double engineCapacity, Engine engine, List<Equipment> equipments, Double price) {
+    public Car(String name, Double engineCapacity, Engine engine, List<Equipment> equipments, Double price, Integer productionYear) {
         this.name = name;
         this.engineCapacity = engineCapacity;
         this.engine = engine;
         this.equipments = equipments;
         this.price = price;
+        production_year = productionYear;
     }
 
     public Long getId() {
