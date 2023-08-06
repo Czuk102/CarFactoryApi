@@ -21,7 +21,8 @@ public class Car {
     @Cascade({org.hibernate.annotations.CascadeType.ALL})
     private List<Equipment> equipments;
     private Double price;
-    private Integer production_year;
+    private Integer productionYear;
+
     public Car() {
     }
 
@@ -32,7 +33,7 @@ public class Car {
         this.engine = engine;
         this.equipments = equipments;
         this.price = price;
-        this.production_year = productionYear;
+        this.productionYear = productionYear;
     }
 
     public Car(String name, Double engineCapacity, Engine engine, List<Equipment> equipments, Double price, Integer productionYear) {
@@ -41,7 +42,7 @@ public class Car {
         this.engine = engine;
         this.equipments = equipments;
         this.price = price;
-        production_year = productionYear;
+        this.productionYear = productionYear;
     }
 
     public Long getId() {
@@ -90,6 +91,14 @@ public class Car {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Integer getProduction_year() {
+        return productionYear;
+    }
+
+    public void setProduction_year(Integer productionYear) {
+        this.productionYear = productionYear;
     }
 
     @Override
