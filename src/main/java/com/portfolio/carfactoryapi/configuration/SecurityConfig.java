@@ -46,12 +46,6 @@ public class SecurityConfig {
         this.rsaKeyProperties = rsaKeyProperties;
     }
 
-
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
         UserDetails user = User.builder()
