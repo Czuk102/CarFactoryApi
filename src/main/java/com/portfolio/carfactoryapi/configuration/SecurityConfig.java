@@ -32,9 +32,9 @@ public class SecurityConfig {
 
     private static final String[] AUTH_WHITELIST = {
             "/swagger-ui.html",
-            "/v3/api-docs**",
+            "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/user/login"
+            "/user/register"
     };
     private final RsaKeyProperties rsaKeyProperties;
 
@@ -63,6 +63,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(withDefaults())
                 .httpBasic(withDefaults())
                 .build();
     }
