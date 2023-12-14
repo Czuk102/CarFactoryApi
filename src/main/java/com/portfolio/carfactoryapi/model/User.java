@@ -1,5 +1,7 @@
 package com.portfolio.carfactoryapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -15,14 +17,20 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotEmpty
     private String username;
     @NotEmpty
+
+    @JsonIgnore
     private String password;
+
     @NotEmpty
     @Email()
     private String email;
+
     @Enumerated(EnumType.STRING)
+    
     @NotEmpty
     private Role role;
 
@@ -46,6 +54,7 @@ public class User implements UserDetails {
         this.username = username;
     }
 
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }
@@ -64,6 +73,7 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -97,5 +107,11 @@ public class User implements UserDetails {
         return true;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public Role getRole() {
+        return role;
+    }
 }

@@ -3,7 +3,6 @@ package com.portfolio.carfactoryapi.service;
 import com.portfolio.carfactoryapi.exception.UserAlreadyExistsException;
 import com.portfolio.carfactoryapi.model.User;
 import com.portfolio.carfactoryapi.repository.UserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +18,7 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserDetails registerNewUser(User user) throws UserAlreadyExistsException {
+    public User registerNewUser(User user) throws UserAlreadyExistsException {
         if (isUserAlreadyExists(user.getUsername())) {
             throw new UserAlreadyExistsException("User already exists: " + user.getUsername());
         }
@@ -32,7 +31,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findUserByUsername(username).orElseThrow(() ->
                 new UsernameNotFoundException("User: " + username + " not found"));
     }

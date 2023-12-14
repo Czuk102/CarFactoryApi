@@ -34,7 +34,7 @@ public class SecurityConfig {
             "/swagger-ui.html",
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/user/register"
+            "/register"
     };
     private final RsaKeyProperties rsaKeyProperties;
 
@@ -46,12 +46,14 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
+                .cors(withDefaults())
                 .authorizeHttpRequests((auth) ->
                         auth.requestMatchers(AUTH_WHITELIST).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .formLogin().disable()
                 .build();
     }
 
@@ -65,6 +67,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(withDefaults())
                 .httpBasic(withDefaults())
+                .formLogin().disable()
                 .build();
     }
 

@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CarFactoryApiApplicationPROD" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="prod" />
+    <module name="CarFactoryApi" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.portfolio.carfactoryapi.CarFactoryApiApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
